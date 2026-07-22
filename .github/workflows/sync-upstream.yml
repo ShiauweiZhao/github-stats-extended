@@ -22,9 +22,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fast-forward from official upstream
+      - name: Merge official upstream updates
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/stats-organization/github-stats-extended.git
           git fetch --prune upstream master
-          git merge --ff-only upstream/master
+          git merge --no-edit upstream/master
           git push origin HEAD:master
