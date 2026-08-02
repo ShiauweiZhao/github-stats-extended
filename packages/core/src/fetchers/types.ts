@@ -7,7 +7,7 @@ export interface GistData {
   forksCount: number;
 }
 
-export interface RepositoryData {
+export interface RepoInfo {
   name: string;
   nameWithOwner: string;
   isPrivate: boolean;
@@ -21,13 +21,18 @@ export interface RepositoryData {
     name: string;
   };
   forkCount: number;
-  starCount: number;
-  totalPRsAuthored: number;
-  totalPRsCommented: number;
-  totalPRsReviewed: number;
-  totalIssuesAuthored: number;
-  totalIssuesCommented: number;
 }
+
+export interface RepoUserStats {
+  // only present when the matching include_* flag is set (see fetchRepoUserStats)
+  totalPRsAuthored?: number;
+  totalPRsCommented?: number;
+  totalPRsReviewed?: number;
+  totalIssuesAuthored?: number;
+  totalIssuesCommented?: number;
+}
+
+export type RepositoryData = RepoInfo & RepoUserStats;
 
 export interface StatsData {
   name: string;
